@@ -1,11 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/black"
-    tools:context=".fragments.HomeFragment">
+    android:padding="16dp">
 
+    <!-- ViewPager for Image Carousel -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"/>
+
+    <!-- GridLayout for Categories -->
+    <GridLayout
+        android:layout_below="@+id/viewPager"
+        android:id="@+id/categories_grid"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:columnCount="2"
+        android:rowCount="2"
+        android:padding="26dp">
+
+        <!-- Category 1 -->
+        <FrameLayout
+            android:layout_gravity="center"
+            android:id="@+id/primer_categoria"
+            android:layout_width="150dp"
+            android:layout_height="180dp"
+            android:background="@drawable/shape_et">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="130dp"
+                android:background="@drawable/alimentos"/>
+
+            <TextView
+                android:layout_marginTop="120dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:fontFamily="@font/fredoka_bold"
+                android:text="@string/categoria1_title"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"/>
+        </FrameLayout>
+
+        <!-- Category 2 -->
+        <FrameLayout
+            android:layout_gravity="center"
+            android:id="@+id/segunda_categoria"
+            android:layout_width="150dp"
+            android:layout_height="180dp"
+            android:background="@drawable/shape_et">
+
+            <ImageView
+                android:layout_marginTop="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="130dp"
+                android:background="@drawable/transporte"/>
+
+            <TextView
+                android:layout_marginTop="120dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:fontFamily="@font/fredoka_bold"
+                android:text="@string/movilidad_y_transporte"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"/>
+        </FrameLayout>
+
+        <!-- Category 3 -->
+        <FrameLayout
+            android:layout_gravity="center"
+            android:id="@+id/tercer_categoria"
+            android:layout_margin="8dp"
+            android:layout_width="150dp"
+            android:layout_height="180dp"
+            android:background="@drawable/shape_et">
+
+            <ImageView
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="130dp"
+                android:background="@drawable/especializados"/>
+
+            <TextView
+                android:layout_marginTop="120dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:fontFamily="@font/fredoka_bold"
+                android:text="@string/servicios_especializados"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"/>
+        </FrameLayout>
+
+        <!-- Category 4 -->
+        <FrameLayout
+            android:layout_gravity="center"
+            android:id="@+id/cuarta_categoria"
+            android:layout_margin="8dp"
+            android:layout_width="150dp"
+            android:layout_height="180dp"
+            android:background="@drawable/shape_et">
+
+            <ImageView
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="130dp"
+                android:background="@drawable/hogar"/>
+
+            <TextView
+                android:layout_marginTop="120dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:fontFamily="@font/fredoka_bold"
+                android:text="@string/hogar_art_culos_y_servicios"
+                android:textColor="@android:color/black"
+                android:textSize="14sp"/>
+        </FrameLayout>
+    </GridLayout>
 
 </RelativeLayout>

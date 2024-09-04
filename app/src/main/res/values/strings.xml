@@ -34,5 +34,9 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="back_title">Volver</string>
     <string name="text_aboutus">Somos una aplicación exclusiva para Inírida, creada con el propósito de fortalecer nuestra comunidad al conectar a sus habitantes con los mejores servicios locales. Nos enorgullece reunir en un solo lugar todo lo que necesitas para tu día a día, desde supermercados y licoreras hasta una amplia gama de servicios ofrecidos por emprendedores locales. Con nosotros, no solo ahorrarás tiempo, sino que también apoyarás el crecimiento y la sostenibilidad de los negocios de nuestra ciudad. Todo está a tu alcance, de manera rápida, sencilla y segura. ¡Bienvenido a la nueva forma de vivir Inírida!</string>
+    <string name="categoria1_title">Alimentos y hospitalidad</string>
+    <string name="movilidad_y_transporte">Movilidad y transporte</string>
+    <string name="servicios_especializados">Servicios especializados</string>
+    <string name="hogar_art_culos_y_servicios">Hogar, artículos y servicios</string>
 
 </resources>
