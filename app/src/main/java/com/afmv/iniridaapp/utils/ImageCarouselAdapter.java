@@ -24,6 +24,10 @@ public class ImageCarouselAdapter extends RecyclerView.Adapter<ImageCarouselAdap
         this.imageUrls = imageUrls;
     }
 
+    public ImageCarouselAdapter(Object imageList) {
+
+    }
+
     @NonNull
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
