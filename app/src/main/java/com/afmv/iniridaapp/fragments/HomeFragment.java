@@ -54,7 +54,7 @@ public class HomeFragment extends Fragment {
         iv4 = view.findViewById(R.id.iv_categoria4);
 
         mDatabase = FirebaseDatabase.getInstance();
-        viewPager = view.findViewById(R.id.viewPager);
+        viewPager = view.findViewById(R.id.viewPagerHome);
         adapter = new ImageCarouselAdapter(getContext(), imageUrls);
         viewPager.setAdapter(adapter);
 

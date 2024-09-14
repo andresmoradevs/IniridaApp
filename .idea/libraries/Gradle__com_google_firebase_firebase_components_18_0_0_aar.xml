@@ -4,9 +4,8 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/a7c3b2b983dd9479c7d6eea321b9fc4e/transformed/firebase-components-18.0.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/a7c3b2b983dd9479c7d6eea321b9fc4e/transformed/firebase-components-18.0.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a7c3b2b983dd9479c7d6eea321b9fc4e/transformed/firebase-components-18.0.0/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a7c3b2b983dd9479c7d6eea321b9fc4e/transformed/firebase-components-18.0.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/a7c3b2b983dd9479c7d6eea321b9fc4e/transformed/firebase-components-18.0.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

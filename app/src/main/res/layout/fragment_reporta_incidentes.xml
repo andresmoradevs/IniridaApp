@@ -1,14 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".fragments.IncidentReportsFragment">
-
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp"
+        android:textSize="28sp"
+        android:fontFamily="@font/fredoka_bold"
+        android:textColor="@color/white"
+        android:text="Reporta un incidente" />
+    <View
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/title"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="15dp"
+        android:layout_height="1dp"
+        android:background="#FFFFFF"
+        android:layout_centerHorizontal="true" />
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="180dp"
+        android:layout_height="210dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/line2"
+        android:src="@drawable/no_fotos"/>
+
+    <TextView
+        android:gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:fontFamily="@font/fredoka_variablefont_wdth"
+        android:layout_below="@id/image"
+        android:textColor="@color/white"
+        android:text="Adjúntanos una imagen o captura del error"/>
+
+    <EditText
+        android:id="@+id/et_title"
+        android:layout_width="wrap_content"
+        android:layout_height="65dp"
+        android:layout_below="@id/image"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/shape_et"
+        android:fontFamily="@font/fredoka_bold"
+        android:gravity="left|center"
+        android:hint="Asunto"
+        android:paddingStart="20dp"
+        android:paddingEnd="0dp"
+        android:textColorHint="@color/gray_light"/>
+
+    <EditText
+        android:id="@+id/et_description"
+        android:layout_width="wrap_content"
+        android:layout_height="65dp"
+        android:layout_below="@id/et_title"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/shape_et"
+        android:fontFamily="@font/fredoka_bold"
+        android:gravity="left|center"
+        android:hint="Cuéntanos, Cual es la falla?"
+        android:paddingStart="20dp"
+        android:paddingEnd="0dp"
+        android:textColorHint="@color/gray_light" />
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:layout_below="@id/et_description"
+        android:fontFamily="@font/fredoka_bold"
+        android:textColor="#4A4848"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/shape_et"
+        android:layout_marginTop="20dp"
+        android:text="Enviar"/>
+
+</RelativeLayout>

@@ -70,8 +70,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
     private void loginUser() {
         mAuth.signInWithEmailAndPassword(email.getText().toString(), pass.getText().toString())
@@ -81,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                         SharedPreferences.Editor editor = preferences.edit();
                         editor.putBoolean("isLoggedIn", true);
                         editor.putString("userUID", mAuth.getCurrentUser().getUid());
+
                         editor.apply();
 
                         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);

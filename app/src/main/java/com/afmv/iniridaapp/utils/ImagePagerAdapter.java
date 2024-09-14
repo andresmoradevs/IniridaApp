@@ -1,6 +1,7 @@
 package com.afmv.iniridaapp.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.afmv.iniridaapp.FullScreenImageActivity;
 import com.afmv.iniridaapp.R;
 import com.bumptech.glide.Glide;
 
@@ -44,10 +46,17 @@ public class ImagePagerAdapter extends PagerAdapter {
         ImageView imageView = view.findViewById(R.id.imageView);
         String imageUrl = imageUrls.get(position);
 
-        // Cargar la imagen con Glide o cualquier otra librería de imágenes
+        // Cargar la imagen con Glide
         Glide.with(context)
                 .load(imageUrl)
                 .into(imageView);
+
+        // Configurar el click listener
+        imageView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, FullScreenImageActivity.class);
+            intent.putExtra("imageUrl", imageUrl);
+            context.startActivity(intent);
+        });
 
         container.addView(view);
         return view;

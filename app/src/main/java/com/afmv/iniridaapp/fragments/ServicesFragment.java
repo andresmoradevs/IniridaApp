@@ -3,64 +3,143 @@ package com.afmv.iniridaapp.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.afmv.iniridaapp.R;
+import com.afmv.iniridaapp.models.StoreItem;
+import com.bumptech.glide.Glide;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ServicesFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ServicesFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private RecyclerView recyclerView;
+    private FirebaseRecyclerAdapter<StoreItem, ServiceViewHolder> adapter;
+    private DatabaseReference databaseReference;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_servicios, container, false);
 
-    public ServicesFragment() {
-        // Required empty public constructor
-    }
+        recyclerView = view.findViewById(R.id.recycler_view_services);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ServiciosFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ServicesFragment newInstance(String param1, String param2) {
-        ServicesFragment fragment = new ServicesFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("store");
+
+        FirebaseRecyclerOptions<StoreItem> options =
+                new FirebaseRecyclerOptions.Builder<StoreItem>()
+                        .setQuery(databaseReference, StoreItem.class)
+                        .build();
+
+        adapter = new FirebaseRecyclerAdapter<StoreItem, ServiceViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(ServiceViewHolder holder, int position, StoreItem model) {
+                holder.setName(model.getNombre());
+                holder.setCategory(model.getCategoria());
+                holder.setContact(model.getContacto());
+                holder.setDescription(model.getDescripcion());
+                holder.setImage(model.getImagenes() != null && !model.getImagenes().isEmpty()
+                        ? model.getImagenes().values().iterator().next()
+                        : null);
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        openBusinessDetailsFragment(model);
+
+                    }
+                });
+            }
+
+            @Override
+            public ServiceViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.item_store, parent, false);
+                return new ServiceViewHolder(view);
+            }
+        };
+
+        recyclerView.setAdapter(adapter);
+
+        return view;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
+
+    public static class ServiceViewHolder extends RecyclerView.ViewHolder {
+        View mView;
+
+        public ServiceViewHolder(View itemView) {
+            super(itemView);
+            mView = itemView;
+
         }
-    }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_servicios, container, false);
+        public void setName(String name) {
+            TextView textViewName = mView.findViewById(R.id.text_view_name);
+            textViewName.setText(name);
+        }
+
+        public void setCategory(String category) {
+            TextView textViewCategory = mView.findViewById(R.id.text_view_category);
+            textViewCategory.setText(category);
+        }
+
+        public void setContact(String contact) {
+            TextView textViewContact = mView.findViewById(R.id.text_view_contact);
+            textViewContact.setText(contact);
+        }
+
+        public void setDescription(String description) {
+            TextView textViewDescription = mView.findViewById(R.id.text_view_description);
+            textViewDescription.setText(description);
+        }
+
+        public void setImage(String imageUrl) {
+            ImageView imageView = mView.findViewById(R.id.image_view_service);
+            if (imageUrl != null && !imageUrl.isEmpty()) {
+                Glide.with(mView.getContext())
+                        .load(imageUrl)
+                        .into(imageView);
+            } else {
+                imageView.setImageResource(R.drawable.alimentos);
+            }
+        }
+
+    }
+    private void openBusinessDetailsFragment(StoreItem business) {
+        BusinessDetailFragment detailsFragment = new BusinessDetailFragment();
+
+        // Pasar el objeto completo StoreItem
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("business_details", business);
+        detailsFragment.setArguments(bundle);
+
+        // Reemplazar el fragmento
+        ((FragmentActivity) getContext()).getSupportFragmentManager().beginTransaction()
+                .replace(R.id.content_frame, detailsFragment)
+                .addToBackStack(null)
+                .commit();
     }
 }

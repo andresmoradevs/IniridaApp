@@ -9,26 +9,31 @@
 
     <!-- ViewPager for Image Carousel -->
 
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager"
-        android:layout_width="220dp"
-        android:layout_height="240dp"
+    <com.google.android.material.circularreveal.cardview.CircularRevealCardView
+        android:id="@+id/layout"
+        android:orientation="vertical"
+        app:cardCornerRadius="25dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp" />
-
-
+        android:layout_width="290dp"
+        android:layout_height="240dp">
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPagerHome"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            />
+    </com.google.android.material.circularreveal.cardview.CircularRevealCardView>
 
     <!-- GridLayout for Categories -->
     <GridLayout
-        android:layout_below="@+id/viewPager"
+        android:layout_below="@+id/layout"
         android:id="@+id/categories_grid"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
         android:columnCount="2"
         android:rowCount="2"
         android:padding="26dp">
